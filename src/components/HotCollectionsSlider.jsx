@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./HotCollectionsSlider.css";
+import Skeleton from "./UI/Skeleton";
 
 const HotCollectionsSlider = () => {
   const [collectionsData, setCollectionsData] = useState([]);
@@ -57,7 +58,22 @@ const HotCollectionsSlider = () => {
             <div className="small-border bg-color-2"></div>
           </div>
           <div className="slider-wrapper">
-            <p>Loading collections...</p>
+            {[...Array(4)].map((_, index) => (
+              <div key={index} className="slide skeleton-slide">
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Skeleton width="100%" height={150} />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton width={50} height={50} borderRadius="50%" />
+                  </div>
+                  <div className="nft_coll_info">
+                    <Skeleton width={100} height={20} />
+                    <Skeleton width={60} height={15} />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -76,7 +92,12 @@ const HotCollectionsSlider = () => {
             &#10094;
           </button>
           {visibleSlides.map((collection) => (
-            <div key={collection.nftId} className="slide active" onClick={() => navigate(`/collection/${collection.nftId}`)} style={{ cursor: "pointer" }}>
+            <div
+              key={collection.nftId}
+              className="slide active"
+              onClick={() => navigate(`/item/${collection.nftId}`)}
+              style={{ cursor: "pointer" }}
+            >
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <img
@@ -88,7 +109,7 @@ const HotCollectionsSlider = () => {
                 <div className="nft_coll_pp">
                   <Link to={`/author/${collection.authorId}`}>
                     <img
-                      className="lazy pp-coll"
+                      className="lazy pp-coll author-image"
                       src={collection.authorImage}
                       alt={collection.title + " author"}
                     />

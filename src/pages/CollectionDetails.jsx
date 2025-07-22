@@ -32,7 +32,7 @@ const CollectionDetails = () => {
         {collection.items && collection.items.length > 0 ? (
           collection.items.map((item) => (
             <div key={item.nftId} className="collection-item">
-              <Link to={`/item-details/${item.nftId}`}>
+              <Link to={`/item/${item.nftId}`}>
                 <img src={item.nftImage} alt={item.title} />
                 <h4>{item.title}</h4>
               </Link>

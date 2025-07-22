@@ -4,18 +4,22 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./NewItems.css";
+import Animate from "../UI/Animate";
 
 const SkeletonItem = () => (
   <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-    <div className="nft__item skeleton">
-      <div className="author_list_pp skeleton-circle"></div>
-      <div className="de_countdown skeleton-line short"></div>
-      <div className="nft__item_wrap skeleton-box"></div>
-      <div className="nft__item_info">
-        <div className="skeleton-line"></div>
-        <div className="skeleton-line short"></div>
+    <Animate type="fade-up" duration={1000}>
+      <div className="nft__item skeleton">
+        <div className="author_list_pp skeleton-circle"></div>
+        <div className="de_countdown skeleton-line short"></div>
+        <div className="nft__item_wrap skeleton-box"></div>
+        <div className="nft__item_info">
+          <div className="skeleton-line"></div>
+          <div className="skeleton-line short"></div>
+        </div>
       </div>
-    </div>
+    </Animate>
   </div>
 );
 
@@ -109,7 +113,7 @@ const NewItems = () => {
   };
 
   const handleItemClick = (itemId) => {
-    navigate(`/item-details/${itemId}`);
+    navigate(`/item/${itemId}`);
   };
 
   const settings = {
@@ -179,63 +183,67 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {items.map((item) => (
-              <div key={item.id}>
-                <div className="nft__item">
-                  <div
-                    className="author_list_pp"
-                    onClick={() => handleAuthorClick(item.authorId)}
-                    style={{ cursor: "pointer" }}
-                    title={`Creator: ${item.authorName}`}
-                  >
-                    <img
-                      className="lazy"
-                      src={item.authorImage}
-                      alt={item.authorName}
-                    />
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="de_countdown">
-                    {formatTime(countdowns[item.id])}
-                  </div>
-
-                  <div className="nft__item_wrap">
-                    <div className="nft__item_extra">
-                      <div className="nft__item_buttons">
-                        <button>Buy Now</button>
-                        <div className="nft__item_share">
-                          <h4>Share</h4>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-facebook fa-lg"></i>
-                          </a>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-twitter fa-lg"></i>
-                          </a>
-                          <a href="">
-                            <i className="fa fa-envelope fa-lg"></i>
-                          </a>
-                        </div>
-                      </div>
+            {items.map((item, index) => (
+              <Animate key={item.id} type="fade-up" duration={1000} delay={index * 100}>
+                <div>
+                  <div className="nft__item">
+                    <div
+                      className="author_list_pp"
+                      onClick={() => handleAuthorClick(item.authorId)}
+                      style={{ cursor: "pointer" }}
+                      title={`Creator: ${item.authorName}`}
+                    >
+                      <img
+                        className="lazy author-image"
+                        src={item.authorImage}
+                        alt={item.authorName}
+                      />
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="de_countdown">
+                      {formatTime(countdowns[item.id])}
                     </div>
 
-                    <img
-                      src={item.nftImage}
-                      className="lazy nft__item_preview"
-                      alt={item.title}
-                      onClick={() => handleItemClick(item.nftId)}
-                      style={{ cursor: "pointer" }}
-                    />
-                  </div>
-                  <div className="nft__item_info" onClick={() => handleItemClick(item.nftId)} style={{ cursor: "pointer" }}>
-                    <h4>{item.title}</h4>
-                    <div className="nft__item_price">{item.price} ETH</div>
-                    <div className="nft__item_like">
-                      <i className="fa fa-heart"></i>
-                      <span>{item.likes}</span>
+                    <div className="nft__item_wrap">
+                      <div className="nft__item_extra">
+                        <div className="nft__item_buttons">
+                          <Animate type="fade-in" duration={800}>
+                            <button>Buy Now</button>
+                          </Animate>
+                          <div className="nft__item_share">
+                            <h4>Share</h4>
+                            <a href="" target="_blank" rel="noreferrer">
+                              <i className="fa fa-facebook fa-lg"></i>
+                            </a>
+                            <a href="" target="_blank" rel="noreferrer">
+                              <i className="fa fa-twitter fa-lg"></i>
+                            </a>
+                            <a href="">
+                              <i className="fa fa-envelope fa-lg"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <img
+                        src={item.nftImage}
+                        className="lazy nft__item_preview"
+                        alt={item.title}
+                        onClick={() => handleItemClick(item.nftId)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                    <div className="nft__item_info" onClick={() => handleItemClick(item.nftId)} style={{ cursor: "pointer" }}>
+                      <h4>{item.title}</h4>
+                      <div className="nft__item_price">{item.price} ETH</div>
+                      <div className="nft__item_like">
+                        <i className="fa fa-heart"></i>
+                        <span>{item.likes}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Animate>
             ))}
           </Slider>
         </div>

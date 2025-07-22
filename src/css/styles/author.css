@@ -1,0 +1,16 @@
+.author-image {
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.author-image:hover,
+.author-image:focus,
+.author-image:active {
+  box-shadow: 0 0 8px 3px #6a4fff;
+  border-color: #6a4fff;
+  outline: none;
+}

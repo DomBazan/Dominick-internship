@@ -1,0 +1,84 @@
+/* NewItems.css */
+
+/* Container and section padding */
+#section-items {
+  padding: 40px 0;
+}
+
+/* Slick slider overrides for consistent item size */
+.slick-slide > div {
+  margin: 0 5px;
+}
+
+.nft__item {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: white;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px; /* fixed width matching HotCollections */
+  transition: transform 0.3s ease;
+}
+
+.nft__item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(106, 79, 255, 0.4);
+}
+
+/* NFT image inside item */
+.nft__item_wrap img.nft__item_preview {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Author image inside item */
+.author_list_pp .author-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Author image hover glow */
+.author_list_pp .author-image:hover,
+.author_list_pp .author-image:focus {
+  box-shadow: 0 0 8px 3px #6a4fff;
+  border-color: #6a4fff;
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .nft__item {
+    width: 180px;
+  }
+  .nft__item_wrap img.nft__item_preview {
+    height: 130px;
+  }
+  .author_list_pp .author-image {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nft__item {
+    width: 140px;
+  }
+  .nft__item_wrap img.nft__item_preview {
+    height: 110px;
+  }
+  .author_list_pp .author-image {
+    width: 35px;
+    height: 35px;
+  }
+}
